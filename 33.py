@@ -12,46 +12,38 @@ for i in range(n):
 for i in range(m):
     a = input()
     a = a.split()
-    if a[0] == 'F':
-        arr[int(a[1]) - 1][int(a[2]) - 1] = 1
-        arr[int(a[2]) - 1][int(a[1]) - 1] = 1
-    else:
-        arr[int(a[1]) - 1][int(a[2]) - 1] = 0
-        arr[int(a[2]) - 1][int(a[1]) - 1] = 0
-    it = True
-    for j in arr:
-        ans = 0
-        for k in j:
-            if j == 1:
-                ans += 1
-        if ans > len(arr) - 2:
-            it = False
-    if it:
-        print(arr)
-        depth = [0]
-        ans = 0
-        ans2 = ''
-        used = [False] * n
-        while len(depth) > 0:
-            e = depth.pop(0)
-            if not used[e]:
-                used[e] = True
-                for i in range(len(arr[e])):
-                    if arr[e][i] == 1:
-                        depth.append(i)
+    arr[int(a[0]) - 1][int(a[1]) - 1] = 1
 
-        if False not in used:
-            print('YES')
-        else:
-            print('NO')
-    else:
-        print('NO')
+used = [False] * n
+stack = []
+
+cycle_found = False
+
+ans = None
 
 
+def dfs(a):
+    global cycle_found
+    if not cycle_found:
+        if used[a]:
+            if a in stack:
+                global ans7
+                ans = stack[stack.index(a)::]
+                cycle_found = True
+            return
+        stack.append(a)
+        used[a] = True
+        for i in range(len(arr[a])):
+            if arr[a][i] == 1:
+                dfs(i)
+        stack.pop(-1)
 
 
+dfs(0)
 
-
-
-
-
+if cycle_found:
+    print('YES')
+    for i in ans:
+        print(i + 1, end=' ')
+else:
+    print('NO')
