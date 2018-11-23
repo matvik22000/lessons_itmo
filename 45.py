@@ -15,14 +15,22 @@ class Person:
 
 
 def find():
-    if len(queue) > 0:
-        # print(queue, products)
-        # print(queue[0].product, products[queue[0].product], current_time)
+    while len(queue) > 0:
         if products[queue[0].product] != 0:
             queue[0].d()
             products[queue[0].product] -= 1
             queue.pop(0)
-            find()
+        else:
+            break
+
+    # if len(queue) > 0:
+    #     # print(queue, products)
+    #     # print(queue[0].product, products[queue[0].product], current_time)
+    #     if products[queue[0].product] != 0:
+    #         queue[0].d()
+    #         products[queue[0].product] -= 1
+    #         queue.pop(0)
+    #         find()
 
 
 current_time = 0
