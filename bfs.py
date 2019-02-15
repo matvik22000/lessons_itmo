@@ -6,8 +6,11 @@ arr = [
     [0, 0, 1, 1, 0, 1],
     [0, 0, 0, 1, 1, 0],
 ]
+
+
+LEN = 6
 queue = []
-used = [False] * 6
+used = [False] * LEN
 queue.append(0)
 while len(queue) > 0:
     el = queue.pop(0)
