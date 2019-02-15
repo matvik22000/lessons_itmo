@@ -27,7 +27,7 @@ def dfs(a):
     if not cycle_found:
         if used[a]:
             if a in stack:
-                global ans7
+                global ans
                 ans = stack[stack.index(a)::]
                 cycle_found = True
             return
