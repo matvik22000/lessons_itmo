@@ -6,8 +6,8 @@ for i in a:
         arr.append(i)
     else:
         try:
-            c = arr.pop(-1)
-            if (c == '(' and i == ')') or (c == '{' and i == '}') or (c == '[' and i == ']'):
+            count = arr.pop(-1)
+            if (count == '(' and i == ')') or (count == '{' and i == '}') or (count == '[' and i == ']'):
                 pass
             else:
                 if not written:

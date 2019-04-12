@@ -1,33 +1,38 @@
-def search(arr, key):
-    left = -1
-    right = len(arr)
-    while left < right - 1:
-        mid = (left + right) // 2
-        if arr[mid] < key:
-            left = mid
-        else:
-            right = mid
-    if right == len(arr):
-        return -1
-    if arr[right] == key:
-        return right
+class Bus:
+    def __init__(self, size, num):
+        self.size = size
+        self.num = num
+
+
+a = input().split()
+n = int(a[0])
+m = int(a[1])
+arr = []
+a = input().split()
+count = 0
+for i in range(len(a)):
+    bus = Bus(int(a[i]), i)
+    arr.append(bus)
+if len(arr) > 1:
+    for i in range(m):
+        min_ind = i
+        for j in range(i + 1, m):
+            if arr[j].size < arr[min_ind].size:
+                min_ind = j
+        b = arr[i]
+        arr[i] = arr[min_ind]
+        arr[min_ind] = b
+
+ans = ""
+while n > 0:
+    if len(arr) > 0:
+        count += 1
+        n -= arr[-1].size
+        ans += str(arr[-1].num + 1) + " "
+        arr.pop(-1)
     else:
-        return -1
-
-
-c = input()
-arr = input().split()
-b = input().split()
-for i in range(len(arr)):
-    arr[i] = int(arr[i])
-
-for i in b:
-    i = int(i)
-    if i < arr[-1]:
-        if search(arr, i) != -1:
-            print("YES")
-        else:
-            print("NO")
-    else:
-        print("NO")
-
+        ans = "-1"
+        break
+if ans != "-1":
+    print(count)
+print(ans)
